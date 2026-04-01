@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MAT133 Project 4 Viewer Thingy</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 5vh;
+        }
+        #sequence-container {
+            max-width: 90vw;
+            max-height: 75vh;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            max-height: 75vh;
+        }
+        .controls {
+            margin-top: 20px;
+            text-align: center;
+            background: #333;
+            padding: 15px 30px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="sequence-container">
+        <img id="viewer" src="images/1.png" alt="Frame sequence">
+    </div>
+
+    <div class="controls">
+        <p>Hold Left/Right Arrow Keys to scrub</p>
+        <label for="speed">Playback Speed: </label>
+        <input type="range" id="speed" min="1" max="10" value="1">
+        <span id="speed-val">1</span>
+    </div>
+
+    <script>
+        const totalFrames = 300;
+        const imageExtension = '.png';
+
+        const img = document.getElementById('viewer');
+        const speedInput = document.getElementById('speed');
+        const speedVal = document.getElementById('speed-val');
+        let currentFrame = 1;
+
+        speedInput.addEventListener('input', (e) => {
+            speedVal.textContent = e.target.value;
+        });
+
+        function updateImage() {
+            img.src = `images/${currentFrame}${imageExtension}`;
+        }
+
+        window.addEventListener('keydown', (e) => {
+            const speed = parseInt(speedInput.value, 10);
+            
+            if (e.key === 'ArrowRight') {
+                currentFrame = Math.min(totalFrames, currentFrame + speed);
+                updateImage();
+                e.preventDefault();
+            } else if (e.key === 'ArrowLeft') {
+                currentFrame = Math.max(1, currentFrame - speed);
+                updateImage();
+                e.preventDefault(); 
+            }
+        });
+    </script>
+</body>
+</html>

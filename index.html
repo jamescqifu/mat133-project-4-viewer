@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MAT133 Project 4 Viewer Thingy</title>
+    <title>Image Sequence Viewer</title>
     <style>
         body {
             background-color: #1a1a1a;
@@ -12,6 +12,7 @@
             flex-direction: column;
             align-items: center;
             margin-top: 5vh;
+            padding-bottom: 50px;
         }
         #sequence-container {
             max-width: 90vw;
@@ -30,6 +31,35 @@
             padding: 15px 30px;
             border-radius: 8px;
         }
+        
+        .description-box {
+            max-width: 800px;
+            width: 90vw;
+            margin-top: 30px;
+            background-color: #242424;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-sizing: border-box;
+            border: 1px solid #333;
+        }
+        .description-box h1 {
+            margin-top: 0;
+            font-size: 1.8em;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .description-box h2 {
+            font-size: 1.3em;
+            color: #cccccc;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+        .description-box p {
+            line-height: 1.6;
+            color: #bbbbbb;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
@@ -45,9 +75,30 @@
         <span id="speed-val">1</span>
     </div>
 
+    <div class="description-box">
+        <h1>Caption</h1>
+        <h2>Metaphor</h2>
+        <p>This piece takes the MAT133 concept of dot products, and more generally the concepts of projection and orthogonality, and interprets it through the lens of the ‘agreeability’ of two vectors. </p>
+        <p>When two vectors are aligned, facing in the same direction, one could say they hold a more ‘agreeable’ nature, which would be observed as a positive dot product. Conversely, two opposing vectors would be ‘disagreeable’ and have a negative dot product. When two vectors are orthogonal, they are in an ambiguous state, thus holding a zero dot product.</p>
+        <p>In a 2D space, the change in this ‘agreeable’ status would be the result of the relative rotations of the two vectors in that space, the angle between the two influencing the cosine portion of the dot product formula, and thus its sign.</p>
+        <p>One could, perhaps, imagine this ‘agreeability’ of a vector from various angles as the agreeability of a person when approached from different angles.</p>
+
+        <h2>Art Piece Relation</h2>
+        <p>As seen in the art piece, with the main piece held still and rotating the viewer around, the subject’s expression moves from a very happy, agreeable demeanor to a more angry, disagreeable one. Midway through, we reach a point where the expression is more ambiguous, both expressing joy and anger which culminate in a somewhat confused expression. This movement around the model is meant to illustrate how a dot product and vector projections change as the relative angles of two vectors, in this case the viewer and the model, change.</p>
+        
+        <h3>Piece Critique</h3>
+        <p>This piece struggles to capture the magnitude portion of the dot product. Sign aside, another major property to the ‘nature’ of a dot product is its magnitude, the product of its two component vectors. The face depicted here is locked at a fixed magnitude of expression, unchanging to any factors. Due to time constraints, I had to strip this portion of the metaphor away. This piece was modelled in Blender and, had I more time, I would’ve wanted to have properly rigged the face to allow for animation and keying of the face’s expression in order to convey this portion of the metaphor.</p>
+        <p>Additionally, the supposedly ‘ambiguous’ side of the model is not as ambiguous as I’d like. In an ideal world, it would’ve come off as more neutral and have had a plain expression. Of course, this would’ve required animating the model which was out of my time budget, but nevertheless it would’ve better conveyed the concept of orthogonality with regard to this metaphor.</p>
+        <p>And finally, approaching from the sides of the head to describe alignment of a vector along its head and tail is somewhat misaligned. Again, had I more time, I would’ve liked to explore having a happier face on the front and somehow conveying anger or disagreeability from the back, thus better suiting the ‘anatomy’ of a vector. Perhaps some use of backface culling would’ve been nice.</p>
+
+        <h2>Attribution</h2>
+        <p>This project was done by a one person team - me!</p>
+        <p>Modelling, writing, rendering, and presentation were all done by James Fu.</p>
+    </div>
     <script>
-        const totalFrames = 300;
-        const imageExtension = '.jpg';
+        // Parameter configuration.
+        const totalFrames = 300; 
+        const imageExtension = '.jpg'; 
 
         const img = document.getElementById('viewer');
         const speedInput = document.getElementById('speed');
